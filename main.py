@@ -17,32 +17,30 @@ for letter in range(len(chosen_word)):
   
 print(display)
 
-# Ask the user to guess a letter and assign their answer to a variable called guess. Make guess # lowercase.
-guess = input("Guess a letter: ").lower()
+# While "_" is still in display, keep repeating untill all strings are displayed instead:
+while "_" in display:
 
-# Check if the letter the user guessed (guess) is one of the letters in the chosen_word.
-check_answer = guess in chosen_word
-if check_answer:
-  print("Right")
-else:
-  print("Wrong")
+  # Ask the user to guess a letter and assign their answer to a variable called guess:
+  guess = input("Guess a letter: ").lower()
+
+  #If the letter at that position matches 'guess' then reveal that letter in the display at that position.
+  if guess not in chosen_word:  
+    print(f"{guess} is not in {chosen_word}.")
+
+  for position in range(len(chosen_word)):
+    letter = chosen_word[position]
+
+    if letter == guess:
+      print(f" {letter} letter position is : {position}")
+      display[position] = letter
+
+  print("")
+
+  print(display)
 
 print("")
-
-#If the letter at that position matches 'guess' then reveal that letter in the display at that position.
-
-for position in range(len(chosen_word)):
-  letter = chosen_word[position]
-
-  if letter == guess:
-    print(f" {letter} letter position is : {position}")
-    display[position] = letter
-
-print("")
-
-# Print 'display' and you should see the guessed letter in the correct position and every other letter replace with "_".
-
-print(display)
+if "_" not in display:
+  print("You Win!")
 
 
 
